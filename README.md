@@ -11,7 +11,7 @@ npm install
 node spawnbuff.js --file="100010000.img.xml" --spawnRate=2
 //  Outputs to a new XML with an 2x mob limit
 //  >>> spawnRate_2x_100010000.img.xml 
-node spawnbuff.js --file="100010000.img.xml" --mobLimit=2
+node spawnbuff.js --file="100010000.img.xml" --mobLimit=105
 //  Outputs to a new XML with an a mob limit of 105
 //  >>> maxSpawns_105_100010000.img.xml 
 ```
