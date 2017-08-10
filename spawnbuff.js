@@ -21,21 +21,23 @@ if (fileName) {
 			        var lifePos = outerData.map(function(e) { return e.$.name; }).indexOf('life');
 
 			        var existinglifeData = outerData[lifePos].imgdir;
+					var existingLength = existinglifeData.length;
 
 			        var mobOnlyData = existinglifeData.filter(function (obj) {
 			        	var stringPos = obj.string.map(function(e) { return e.$.name; }).indexOf('type');
 			        	return obj.string[stringPos].$.value == 'm';
 			        });
 
-					var dataLength = mobOnlyData.length;
-					var existingLength = existinglifeData.length;
-					var modifiedPrefix = ''
-					if (mobLimit && mobLimit > dataLength) {
+					var numOriginalMobs = mobOnlyData.length;
+					var numNonMobs = existingLength - numOriginalMobs;
+					var modifiedPrefix = '';
+
+
+					if (mobLimit && mobLimit > numOriginalMobs) {
 						var shuffledMobData = shuffle(mobOnlyData.slice());
-						for(var i = 0; i < mobLimit - dataLength; i++) {
+						for(var i = 0; i < mobLimit - numOriginalMobs; i++) {
 							if(shuffledMobData.length == 0) {
 								shuffledMobData = shuffle(mobOnlyData.slice());
-								console.log(mobOnlyData)
 							}
 
 							// Get Random Mob on Map
@@ -46,7 +48,7 @@ if (fileName) {
 				        modifiedPrefix = 'maxSpawns_' + mobLimit + '_';
 					} else if (rateIncrease && rateIncrease > 1) {
 						for(var i = 1; i < rateIncrease; i++) {
-				        	for(var j = 0; j < dataLength; j++) {
+				        	for(var j = 0; j < numOriginalMobs; j++) {
 				         		var dupeMob = JSON.parse(JSON.stringify(mobOnlyData[j]));
 
 				         		dupeMob.$.name = (existingLength++).toString();
@@ -55,14 +57,20 @@ if (fileName) {
 				        }
 				        modifiedPrefix = 'spawnRate_' + rateIncrease + 'x_';
 					} else {
-						console.log("No valid rate increase or spawn limit specified!")
+						console.log("No valid rate increase or spawn limit specified!");
+						console.log("The current mob limit is " + numOriginalMobs + ".");
+						return;
 					}
 
 			        result.imgdir.imgdir[lifePos].imgdir = existinglifeData;
 
 			        var xml = xmlBuilder.buildObject(result);
-
+			        var numNewMobs = existinglifeData.length - numNonMobs;
+			        var percentIncrease = (numNewMobs * 1.0 / numOriginalMobs).toFixed(2);
+			        
 			        fs.writeFile(modifiedPrefix+ fileName, xml, function(err) {});
+			        console.log(modifiedPrefix + fileName + " created.");
+			        console.log("The mob limit has increased from " + numOriginalMobs + " to " + numNewMobs + " (" + percentIncrease +"x)");
 				}
 		    });
 		}
