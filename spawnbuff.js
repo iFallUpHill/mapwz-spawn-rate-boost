@@ -32,7 +32,6 @@ if (fileName) {
 					var numNonMobs = existingLength - numOriginalMobs;
 					var modifiedPrefix = '';
 
-
 					if (mobLimit && mobLimit > numOriginalMobs) {
 						var shuffledMobData = shuffle(mobOnlyData.slice());
 						for(var i = 0; i < mobLimit - numOriginalMobs; i++) {
