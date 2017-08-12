@@ -26,3 +26,11 @@ node readmap.js --file="220010500.img.xml"
 The current mob limit is 36.
 The current mob list is 3000005,3110101.
 ```
+
+Strip etc xmls of unused nodes for a specific version. 
+Configure exact nodes to strip or preserve at the top of the script. 
+
+```javascript
+node etcitem_nodestrip.js --file="0400.img.xml"
+stripped_0400.img.xml created.
+```

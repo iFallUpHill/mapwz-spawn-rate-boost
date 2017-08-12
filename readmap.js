@@ -36,8 +36,6 @@ if (fileName) {
 						return self.indexOf(value) === index;
 					});
 
-					console.log(mobsInMap)
-
 					var numOriginalMobs = mobOnlyData.length;
 					var numNonMobs = existingLength - numOriginalMobs;
 					var modifiedPrefix = '';
