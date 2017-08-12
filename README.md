@@ -1,14 +1,15 @@
 # NodeJS Map Spawn Rate Increase
 
-For multiplying the spawn rate on a private server.
+Install the project.
 
+```javascript
+npm install
+```
+
+For multiplying the spawn rate on a private server.
 Only accepts whole number multiplier rates or monster limits.
 
 ```javascript
-// Install App
-npm install
-
-// Buff Spawns in Map
 node spawnbuff.js --file="100010000.img.xml" --spawnRate=2
 spawnRate_2x_100010000.img.xml created.
 The mob limit has increased from 52 to 104 (2.00x)
