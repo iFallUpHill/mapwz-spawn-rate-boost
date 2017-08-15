@@ -35,3 +35,9 @@ Configure exact nodes to strip or preserve at the top of the script.
 node etcitem_nodestrip.js --file="0400.img.xml"
 stripped_0400.img.xml created.
 ```
+
+Generate QuestInfo queries.
+
+```javascript
+node questinfo_queries.js --file="QuestInfo.img.xml"
+```
