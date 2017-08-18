@@ -51,5 +51,5 @@ node act_queries.js --file="Act.img.xml" --uniqueidstart=1000
 Generate Check queries.
 
 ```javascript
- node check_queries.js --file="Check.img.xml"
+node check_queries.js --file="Check.img.xml"
  ```
