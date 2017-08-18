@@ -23,7 +23,9 @@ if (fileName) {
 			        	var questID = outerData[i].$.name;
 			        	var questPhases = innerData.imgdir;
 			        	
-			        	for(var j = 0; j < questPhases.length; j++) {
+			        	for(var j = 0; j < questPhases.length; j++) { 
+							var type = questPhases[j].$.name;
+							
 			        		if (j === 0) {
 			        			// do nothing for now 
 			        		} else if (j === 1) {
@@ -37,7 +39,7 @@ if (fileName) {
 
 				        				if (name && value) {
 											var query = 'INSERT into wz_questactdata (id, questid, name, type, intStore, stringStore, applicableJobs, uniqueid)';
-											query += ' VALUES (NULL, ' + questID + ', "' + name + '", ' + j + ', ' + value + ', NULL, "", -1);'; 
+											query += ' VALUES (NULL, ' + questID + ', "' + name + '", ' + type + ', ' + value + ', NULL, "", -1);'; 
 											console.log(query);	
 				        				}
 			        				}
@@ -56,7 +58,7 @@ if (fileName) {
 			        						var itemCount = itemInfo[itemCountPos].$.value;
 
 			        						var query = 'INSERT into wz_questactdata (id, questid, name, type, intStore, stringStore, applicableJobs, uniqueid)';
-											query += ' VALUES (NULL, ' + questID + ', "item", ' + j + ', ' + itemID + ', NULL, "", '+ (uniqueid++) +');';
+											query += ' VALUES (NULL, ' + questID + ', "item", ' + type + ', ' + itemID + ', NULL, "", '+ (uniqueid++) +');';
 											console.log(query);	
 			        					}
 			        				}

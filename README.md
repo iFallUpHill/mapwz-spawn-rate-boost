@@ -47,3 +47,9 @@ Generate Act queries. Use uniqueidstart to specific item uniqueid starting index
 ```javascript
 node act_queries.js --file="Act.img.xml" --uniqueidstart=1000
 ```
+
+Generate Check queries.
+
+```javascript
+ node check_queries.js --file="Check.img.xml"
+ ```
