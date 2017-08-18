@@ -42,7 +42,7 @@ Generate QuestInfo queries.
 node questinfo_queries.js --file="QuestInfo.img.xml"
 ```
 
-Generate Act queries. Use uniqueidstart to specific item uniqueid starting index.
+Generate Act queries. Use uniqueidstart to specify the item uniqueid starting index.
 
 ```javascript
 node act_queries.js --file="Act.img.xml" --uniqueidstart=1000
