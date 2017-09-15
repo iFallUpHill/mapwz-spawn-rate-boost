@@ -54,15 +54,42 @@ if (fileName) {
 			        						var itemIDPos = itemInfo.map(function(e) { return e.$.name; }).indexOf('id');
 			        						var itemCountPos = itemInfo.map(function(e) { return e.$.name; }).indexOf('count');
 
+
+			        						var itemPropPos = itemInfo.map(function(e) { return e.$.name; }).indexOf('prop');
+			        						var itemPeriodPos = itemInfo.map(function(e) { return e.$.name; }).indexOf('period');
+			        						var itemJobPos = itemInfo.map(function(e) { return e.$.name; }).indexOf('job');
+			        						var itemJobExPos = itemInfo.map(function(e) { return e.$.name; }).indexOf('jobEx');
+			 
+
 			        						var itemID = itemInfo[itemIDPos].$.value;
 			        						var itemCount = itemInfo[itemCountPos].$.value;
 
+			        						// Set defaults
+			        						var hasItemProp = itemPropPos !== -1; 
+
+			        						var itemProp = hasItemProp ? itemInfo[itemPropPos].$.value : -2;
+			        						var itemPeriod = itemPeriodPos !== -1 ? itemInfo[itemPeriodPos].$.value : 0;
+			        						var itemJob = itemJobPos !== -1 ? itemInfo[itemJobPos].$.value : -1;
+			        						var itemJobEx = itemJobExPos !== -1 ? itemInfo[itemJobExPos].$.value : -1;
+
+			        						if((itemPropPos === -1 && itemPeriodPos === -1 && itemJobPos === -1 && itemJobExPos === -1) || (hasItemProp && itemProp < 0)) {
+                                            	uniqueid++;
+                                            }
+
 			        						var query = 'INSERT into wz_questactdata (id, questid, name, type, intStore, stringStore, applicableJobs, uniqueid)';
-											query += ' VALUES (NULL, ' + questID + ', "item", ' + type + ', ' + itemID + ', NULL, "", '+ (uniqueid++) +');';
+											query += ' VALUES (NULL, ' + questID + ', "item", ' + type + ', ' + itemID + ', NULL, "", '+ (uniqueid) +');';
 											console.log(query);	
+
+											var query2 = 'INSERT into wz_questactitemdata (id, itemid, count, period, gender, job, jobEx, prop, uniqueid)';
+                                            query2 += ' VALUES (NULL, ' + itemID + ', ' + itemCount + ', ' + itemPeriod + ', 2, ' + itemJob + ', ' + itemJobEx + ', ' + itemProp + ', '+ (uniqueid) +');';
+                                            console.log(query2);
+
+                                            
 			        					}
 			        				}
 			        			}
+			        			// Fail safe to ensure uniqueid increments between quests
+			        			uniqueid++;
 			        		} else {
 			        			// do nothing for now
 			        		}
